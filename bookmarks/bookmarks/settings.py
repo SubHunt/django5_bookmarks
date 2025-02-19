@@ -126,3 +126,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
+
+# Имитация SMTP для отпарвления на e-mail ссылку для сброса пароля.
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

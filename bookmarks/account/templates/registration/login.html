@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}Авторизация{% endblock title %}
+{% block title %}Вход{% endblock title %}
 
 {% block content %}
-  <h1>Авторизация</h1>
+  <h1>Вход</h1>
   {% if form.errors %}
     <p> Ваше имя пользователя или пароль неверны. Пожалуйста, повторите попытку</p>
   {% else %}
@@ -14,7 +14,12 @@
       {{ form.as_p }}
       {% csrf_token %}
       <input type="hidden" name="next" value="{{ next }}" />
-      <p><input type="submit" value="Авторризация"></p>
+      <p><input type="submit" value="Войти"></p>
     </form>
+    <p>
+      <a href="{% url "password_reset" %}">
+        Забыли пароль?
+      </a>
+    </p>
   </div>
 {% endblock content %}
