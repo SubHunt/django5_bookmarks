@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model
+from .models import Profile
 
 
 class LoginForm(forms.Form):
@@ -26,3 +27,27 @@ class UserRegistrationForm(forms.ModelForm):
         if cd['password'] != cd['password2']:
             raise forms.ValidationError('Пароли не свопадают.')
         return cd['password2']
+
+    def clean_email(self):
+        data = self.cleaned_data['email']
+        qs = User.objects.exclude(
+            id=self.instance.id
+        ).filter(
+            email=data
+        )
+        if qs.exists():
+            raise forms.ValidationError('Email уже используется')
+        return data
+
+
+class UserEditForm(forms.ModelForm):
+    class Meta:
+        # model = User  # type: ignore
+        model = get_user_model()
+        fields = ['first_name', 'last_name', 'email']
+
+
+class ProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['date_of_birth', 'photo']

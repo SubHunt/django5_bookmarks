@@ -5,6 +5,7 @@
 {% block content %}
   <h1>Вход</h1>
   <p>Пожалуйста, воспользуйтесь формой ниже для входа</p>
+
   <form method="POST">
     {{ form.as_p }}
     {% csrf_token %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Изменение данных аккаунта{% endblock title %}
+
+{% block content %}
+  <h1>Изменение данных аккаунта</h1>
+  <p>Вы можете изменить данные вашего аккаунта используя форму ниже:</p>
+  <form method="post" enctype="multipart/form-data">
+    {{ user_form.as_p }}
+    {{ profile_form.as_p }}
+    {% csrf_token %}
+    <p><input type="submit" value="Сохранить изменения"></p>
+  </form>
+{% endblock content %}
+
