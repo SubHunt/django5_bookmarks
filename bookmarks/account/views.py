@@ -51,9 +51,7 @@ def register(request):
             # Создать новый объект пользователя, но пока не сохранять его
             new_user = user_form.save(commit=False)
             # Установить выбранный пароль
-            new_user.set_password(
-                user_form.cleaned_data['password']
-            )
+            new_user.set_password(user_form.cleaned_data['password'])
             # Сохранить объект USER
             new_user.save()
             # Создать профиль пользователя
@@ -65,11 +63,11 @@ def register(request):
             )
     else:
         user_form = UserRegistrationForm()
-        return render(
-            request,
-            'account/register.html',
-            {'user_form': user_form}
-        )
+    return render(
+        request,
+        'account/register.html',
+        {'user_form': user_form}
+    )
 
 
 @login_required
